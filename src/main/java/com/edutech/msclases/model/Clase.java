@@ -1,6 +1,6 @@
 package com.edutech.msclases.model;
 
-import java.util.List;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,17 +13,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "modulo")
+@Table(name = "clase")
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Modulo {
+public class Clase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idModulo;
+    private int idClase;
 
     @Column(nullable = false)
     private int idCurso;
@@ -34,5 +34,14 @@ public class Modulo {
     @Column(length = 1000, nullable = false)
     private String descripcion;
 
-    // private List<Clase> clases;
+    @Column(length = 50, nullable = false)
+    private String categoria;
+
+    @Column(nullable = false)
+    private LocalDate fechaCreacion;
+
+    @Column(nullable = false)
+    private Boolean publicado;
+
+    // private int idModulo;
 }
