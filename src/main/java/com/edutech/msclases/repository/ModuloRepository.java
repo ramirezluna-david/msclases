@@ -17,4 +17,6 @@ public interface ModuloRepository extends JpaRepository<Modulo, Integer>{
     List<Modulo> findAll();
 
     void deleteById(int idModulo);
+
+    Modulo getReferenceById(int idModulo);
 }

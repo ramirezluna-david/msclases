@@ -2,11 +2,15 @@ package com.edutech.msclases.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,5 +38,7 @@ public class Modulo {
     @Column(length = 1000, nullable = false)
     private String descripcion;
 
-    // private List<Clase> clases;
+    @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL, orphanRemoval = true )
+    @JsonManagedReference
+    private List<Clase> clases;
 }

@@ -17,4 +17,6 @@ public interface ClaseRepository extends JpaRepository<Clase, Integer>{
     List<Clase> findAll();
 
     void deleteById(int idClase);
+
+    // Clase getReferenceById(int idClase);
 }

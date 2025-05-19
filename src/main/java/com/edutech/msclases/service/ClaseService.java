@@ -29,4 +29,8 @@ public class ClaseService {
     public void deleteById(int idClase) {
         claseRepository.deleteById(idClase);
     }
+
+    /* public Clase clasexId(int idClase) {
+        return claseRepository.getReferenceById(idClase);
+    } */
 }

@@ -16,11 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edutech.msclases.model.Clase;
+import com.edutech.msclases.model.Modulo;
 import com.edutech.msclases.service.ClaseService;
+import com.edutech.msclases.service.ModuloService;
 
 @RestController
 @RequestMapping("/api/v1/clases")
 public class ClaseController {
+
+    @Autowired
+    private ModuloService moduloService;
 
     @Autowired
     private ClaseService claseService;
@@ -37,6 +42,12 @@ public class ClaseController {
 
     @PostMapping
     public ResponseEntity<Clase> createClase(@RequestBody Clase clase) {
+        int idLink = clase.getModulo().getIdModulo();
+        Modulo modulo = moduloService.moduloxId(idLink);
+        if(modulo != null) {
+            clase.setModulo(modulo);
+        }
+
         Clase nuevaClase = claseService.save(clase);
         return new ResponseEntity<>(nuevaClase, HttpStatus.ACCEPTED);
     }

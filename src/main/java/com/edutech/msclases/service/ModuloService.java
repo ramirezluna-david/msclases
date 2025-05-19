@@ -29,4 +29,8 @@ public class ModuloService {
     public void deleteById(int idCurso) {
         moduloRepository.deleteById(idCurso);
     }
+
+    public Modulo moduloxId(int idModulo) {
+        return moduloRepository.getReferenceById(idModulo);
+    }
 }
