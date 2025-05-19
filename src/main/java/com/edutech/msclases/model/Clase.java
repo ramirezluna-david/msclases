@@ -2,6 +2,8 @@ package com.edutech.msclases.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -45,7 +47,8 @@ public class Clase {
     @Column(nullable = false)
     private Boolean publicado;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "idModulo")
+    @JsonBackReference
     private Modulo modulo;
 }

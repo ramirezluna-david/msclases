@@ -38,7 +38,7 @@ public class Modulo {
     @Column(length = 1000, nullable = false)
     private String descripcion;
 
-    @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL, orphanRemoval = true )
+    @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Clase> clases;
 }
