@@ -67,7 +67,7 @@ public class ClaseController {
         try {
             Clase cla = claseService.findById(idClase);
             cla.setIdClase(idClase);
-            cla.setIdCurso(clase.getIdCurso())
+            cla.setIdCurso(clase.getIdCurso());
             cla.setTitulo(clase.getTitulo());
             cla.setDescripcion(clase.getDescripcion());
             cla.setCategoria(clase.getCategoria());
