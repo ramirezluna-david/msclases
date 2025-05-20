@@ -55,6 +55,7 @@ public class ModuloController {
     public ResponseEntity<Modulo> updateModulo(@PathVariable int idModulo, @RequestBody Modulo modulo) {
         try {
             Modulo mod = moduloService.findById(idModulo);
+            mod.setIdModulo(idModulo);
             mod.setIdCurso(modulo.getIdCurso());
             mod.setTitulo(modulo.getTitulo());
             mod.setDescripcion(modulo.getDescripcion());

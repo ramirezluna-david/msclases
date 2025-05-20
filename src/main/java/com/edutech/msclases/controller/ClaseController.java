@@ -66,7 +66,8 @@ public class ClaseController {
     public ResponseEntity<Clase> updateClase(@PathVariable int idClase, @RequestBody Clase clase) {
         try {
             Clase cla = claseService.findById(idClase);
-            cla.setIdClase(clase.getIdCurso());
+            cla.setIdClase(idClase);
+            cla.setIdCurso(clase.getIdCurso())
             cla.setTitulo(clase.getTitulo());
             cla.setDescripcion(clase.getDescripcion());
             cla.setCategoria(clase.getCategoria());
