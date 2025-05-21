@@ -48,24 +48,29 @@ public class ClaseController {
             clase.setModulo(modulo);
         }
 
-        Clase nuevaClase = claseService.save(clase);
-        return new ResponseEntity<>(nuevaClase, HttpStatus.ACCEPTED);
+        Clase buscarClase = claseService.findById(clase.getIdClase());
+        if(buscarClase == null) {
+            Clase nuevaClase = claseService.save(clase);
+            return new ResponseEntity<>(nuevaClase, HttpStatus.ACCEPTED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
     }
 
     @GetMapping("/{idClase}")
     public ResponseEntity<Clase> readClase(@PathVariable int idClase) {
-        try {
-            Clase clase = claseService.findById(idClase);
+        Clase clase = claseService.findById(idClase);
+        if(clase != null) {
             return new ResponseEntity<>(clase, HttpStatus.OK);
-        } catch(Exception e) {
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @PutMapping("/{idClase}")
     public ResponseEntity<Clase> updateClase(@PathVariable int idClase, @RequestBody Clase clase) {
-        try {
-            Clase cla = claseService.findById(idClase);
+        Clase cla = claseService.findById(idClase);
+        if(cla != null) {
             cla.setIdClase(idClase);
             cla.setIdCurso(clase.getIdCurso());
             cla.setTitulo(clase.getTitulo());
@@ -75,18 +80,19 @@ public class ClaseController {
             cla.setPublicado(clase.getPublicado());
 
             claseService.save(cla);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch(Exception e) {
+            return new ResponseEntity<>(clase, HttpStatus.OK);
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @DeleteMapping("/{idClase}")
     public ResponseEntity<?> deleteClase(@PathVariable int idClase) {
-        try {
+        Clase buscarClase = claseService.findById(idClase);
+        if(buscarClase != null) {
             claseService.deleteById(idClase);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch(Exception e) {
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }

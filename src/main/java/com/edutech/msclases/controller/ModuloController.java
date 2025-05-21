@@ -36,16 +36,21 @@ public class ModuloController {
 
     @PostMapping
     public ResponseEntity<Modulo> createModulo(@RequestBody Modulo modulo) {
-        Modulo nuevoModulo = moduloService.save(modulo);
-        return new ResponseEntity<>(nuevoModulo, HttpStatus.ACCEPTED);
+        Modulo buscarModulo = moduloService.findById(modulo.getIdModulo());
+        if(buscarModulo == null) {
+            Modulo nuevoModulo = moduloService.save(modulo);
+            return new ResponseEntity<>(nuevoModulo, HttpStatus.ACCEPTED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
     }
 
     @GetMapping("/{idModulo}")
     public ResponseEntity<Modulo> readModulo(@PathVariable int idModulo) {
-        try {
-            Modulo modulo = moduloService.findById(idModulo);
-            return new ResponseEntity<>(modulo, HttpStatus.OK);
-        } catch(Exception e) {
+        Modulo buscarModulo = moduloService.findById(idModulo);
+        if(buscarModulo != null) {
+            return new ResponseEntity<>(buscarModulo, HttpStatus.OK);
+        } else {
             // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -53,8 +58,8 @@ public class ModuloController {
 
     @PutMapping("/{idModulo}")
     public ResponseEntity<Modulo> updateModulo(@PathVariable int idModulo, @RequestBody Modulo modulo) {
-        try {
-            Modulo mod = moduloService.findById(idModulo);
+        Modulo mod = moduloService.findById(idModulo);
+        if(mod != null) {
             mod.setIdModulo(idModulo);
             mod.setIdCurso(modulo.getIdCurso());
             mod.setTitulo(modulo.getTitulo());
@@ -62,17 +67,18 @@ public class ModuloController {
 
             moduloService.save(mod);
             return new ResponseEntity<>(modulo, HttpStatus.OK);
-        } catch(Exception e) {
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @DeleteMapping("/{idModulo}")
     public ResponseEntity<?> deleteModulo(@PathVariable int idModulo) {
-        try {
+        Modulo buscarModulo = moduloService.findById(idModulo);
+        if(buscarModulo != null) {
             moduloService.deleteById(idModulo);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch(Exception e) {
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
