@@ -33,4 +33,15 @@ public class ClaseService {
     /* public Clase clasexId(int idClase) {
         return claseRepository.getReferenceById(idClase);
     } */
+
+    public Boolean cambiarVisibilidad(int idClase) {
+        Clase buscarClase = claseRepository.findById(idClase);
+        if(buscarClase != null) {
+            buscarClase.setPublicado((!buscarClase.getPublicado()));
+            claseRepository.save(buscarClase);
+            return true;
+        }
+
+        return false;
+    }
 }
