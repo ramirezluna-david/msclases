@@ -58,14 +58,7 @@ public class ModuloController {
 
     @PutMapping("/{idModulo}")
     public ResponseEntity<Modulo> updateModulo(@PathVariable int idModulo, @RequestBody Modulo modulo) {
-        Modulo mod = moduloService.findById(idModulo);
-        if(mod != null) {
-            mod.setIdModulo(idModulo);
-            mod.setIdCurso(modulo.getIdCurso());
-            mod.setTitulo(modulo.getTitulo());
-            mod.setDescripcion(modulo.getDescripcion());
-
-            moduloService.save(mod);
+        if(moduloService.update(idModulo, modulo)) {
             return new ResponseEntity<>(modulo, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

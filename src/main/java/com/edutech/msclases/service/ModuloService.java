@@ -3,6 +3,8 @@ package com.edutech.msclases.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.edutech.msclases.model.Modulo;
@@ -32,5 +34,20 @@ public class ModuloService {
 
     public Modulo moduloxId(int idModulo) {
         return moduloRepository.getReferenceById(idModulo);
+    }
+
+    public Boolean update(int idModulo, Modulo modulo) {
+        Modulo mod = moduloRepository.findById(idModulo);
+        if(mod != null) {
+            mod.setIdModulo(idModulo);
+            mod.setIdCurso(modulo.getIdCurso());
+            mod.setTitulo(modulo.getTitulo());
+            mod.setDescripcion(modulo.getDescripcion());
+
+            moduloRepository.save(mod);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -70,17 +70,7 @@ public class ClaseController {
 
     @PutMapping("/{idClase}")
     public ResponseEntity<Clase> updateClase(@PathVariable int idClase, @RequestBody Clase clase) {
-        Clase cla = claseService.findById(idClase);
-        if(cla != null) {
-            cla.setIdClase(idClase);
-            cla.setIdCurso(clase.getIdCurso());
-            cla.setTitulo(clase.getTitulo());
-            cla.setDescripcion(clase.getDescripcion());
-            cla.setCategoria(clase.getCategoria());
-            cla.setFechaCreacion(clase.getFechaCreacion());
-            cla.setPublicado(clase.getPublicado());
-
-            claseService.save(cla);
+        if(claseService.update(idClase, clase)) {
             return new ResponseEntity<>(clase, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

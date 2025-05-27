@@ -3,6 +3,8 @@ package com.edutech.msclases.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.edutech.msclases.model.Clase;
@@ -43,5 +45,23 @@ public class ClaseService {
         }
 
         return false;
+    }
+
+    public Boolean update(int idClase, Clase clase) {
+        Clase cla = claseRepository.findById(idClase);
+        if(cla != null) {
+            cla.setIdClase(idClase);
+            cla.setIdCurso(clase.getIdCurso());
+            cla.setTitulo(clase.getTitulo());
+            cla.setDescripcion(clase.getDescripcion());
+            cla.setCategoria(clase.getCategoria());
+            cla.setFechaCreacion(clase.getFechaCreacion());
+            cla.setPublicado(clase.getPublicado());
+
+            claseRepository.save(cla);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
