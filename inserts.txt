@@ -1,0 +1,23 @@
+INSERT INTO modulo (id_curso, titulo, descripcion) VALUES
+(1, 'Introducción a Java', 'Módulo básico donde se cubren los fundamentos del lenguaje Java.'),
+(1, 'Programación Orientada a Objetos', 'Conceptos y práctica de POO en Java, incluyendo clases, objetos y herencia.'),
+(2, 'Fundamentos de Bases de Datos', 'Introducción a bases de datos relacionales, SQL y modelado de datos.'),
+(2, 'Consultas Avanzadas en SQL', 'Aprende a realizar consultas complejas, joins y subconsultas.'),
+(3, 'Desarrollo Web con HTML y CSS', 'Bases para diseñar y estructurar páginas web usando HTML y CSS.'),
+(3, 'JavaScript para Principiantes', 'Introducción a JavaScript y la manipulación del DOM.'),
+(4, 'Spring Framework Básico', 'Uso del framework Spring para construir aplicaciones Java robustas.'),
+(4, 'Manejo de Dependencias con Maven', 'Cómo gestionar librerías y dependencias usando Maven.'),
+(5, 'Introducción a la Seguridad Informática', 'Principios básicos de seguridad en aplicaciones y redes.'),
+(5, 'Autenticación y Autorización', 'Implementación de mecanismos de seguridad en aplicaciones web.');
+
+INSERT INTO clase (id_curso, titulo, descripcion, categoria, fecha_creacion, publicado, id_modulo) VALUES
+(1, 'Introducción a Variables', 'Explicación sobre variables y tipos de datos en Java.', 'Teoría', '2024-01-10', TRUE, 1),
+(1, 'Clases y Objetos', 'Conceptos básicos de POO y creación de clases.', 'Teoría', '2024-01-15', TRUE, 2),
+(2, 'Modelo Entidad-Relación', 'Aprende a diseñar bases de datos con diagramas ER.', 'Práctica', '2024-02-05', TRUE, 3),
+(2, 'Consultas SELECT', 'Cómo hacer consultas básicas en SQL.', 'Teoría', '2024-02-10', TRUE, 4),
+(3, 'Estructura HTML', 'Fundamentos del lenguaje HTML para crear páginas.', 'Teoría', '2024-03-01', TRUE, 5),
+(3, 'Estilos con CSS', 'Aplicación de estilos y diseño con CSS.', 'Práctica', '2024-03-05', TRUE, 5),
+(4, 'Configuración de Spring', 'Primeros pasos con el framework Spring.', 'Teoría', '2024-04-10', FALSE, 7),
+(4, 'Proyecto Maven', 'Creación y manejo de proyectos con Maven.', 'Práctica', '2024-04-15', FALSE, 8),
+(5, 'Fundamentos de Seguridad', 'Introducción a conceptos básicos de seguridad informática.', 'Teoría', '2024-05-01', TRUE, 9),
+(5, 'OAuth2 y JWT', 'Autenticación y autorización con OAuth2 y JWT.', 'Práctica', '2024-05-10', TRUE, 10);
